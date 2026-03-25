@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Knight : MonoBehaviour
 {
 
     // Done in AnimationEvent scene to play footstep sound effects at the right time during the walking animation
     public int randomNumber;
+    public Vector2 movement;
+
     public AudioSource footstep1SFX;
     public AudioSource footstep2SFX;
     public AudioSource footstep3SFX;
@@ -18,7 +21,7 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = movement;
     }
 
     public void Footstep()
@@ -44,5 +47,9 @@ public class Knight : MonoBehaviour
         }
 
         Debug.Log("Knight footstep sound played.");
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        movement = context.ReadValue<Vector2>();
     }
 }
